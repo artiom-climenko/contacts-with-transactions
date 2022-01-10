@@ -24,7 +24,7 @@ let globalStyles = css`
   body {
     margin: 0;
     padding: 0;
-    background-color: var(--color-background-stripe);
+    background-color: var(--color-background);
     font-family: 'Inter', sans-serif;
   }
 `;
