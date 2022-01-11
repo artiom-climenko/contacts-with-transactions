@@ -1,9 +1,10 @@
 import React from 'react';
+import { Container } from './index.styles';
 
 export function DashboardPage() {
   return (
-    <>
-      <div></div>
-    </>
+    <Container>
+      <></>
+    </Container>
   );
 }
