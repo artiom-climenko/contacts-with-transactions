@@ -1,8 +1,6 @@
 import React from 'react';
 import { Container } from './index.styles';
-import { PageTitle } from '../components/PageTitle';
-import { TabBar } from '../components/TabBar';
-import { ContactsContainer } from '../components/MainWindow';
+import { ContactsContainer, TabBar, PageTitle } from '../components';
 
 export function DashboardPage() {
   return (

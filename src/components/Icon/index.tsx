@@ -1,0 +1,32 @@
+import React from 'react';
+import sprite from '../../assets/icons/sprite.svg';
+
+export enum IconNames {
+  arrowBack = 'arrowBack',
+  checkboxActive = 'checkboxActive',
+  checkboxNeutral = 'checkboxNeutral',
+  delete = 'delete',
+  arrowDown = 'arrowDown',
+  dropDown = 'dropDown',
+  edit = 'edit',
+  filter = 'filter',
+  info = 'info',
+  master = 'master',
+  breadcrumb = 'breadcrumb',
+  radioActive = 'radioActive',
+  radioNeutral = 'radioNeutral',
+}
+
+export interface IPropsIcon {
+  icon: IconNames;
+  size: number;
+  fill: string;
+}
+
+export function Icon({ size, fill, icon }: IPropsIcon) {
+  return (
+    <svg width={size} height={size} fill={fill}>
+      <use href={sprite + `#${icon}`} />;
+    </svg>
+  );
+}
