@@ -1,5 +1,5 @@
 import React from 'react';
-import { FilterButton, SearchField } from '../../components';
+import { FilterButton, SearchField, TableTitles } from '../../components';
 import { Container, FilterAndSearch } from './index.styles';
 
 export function ContactsContainer() {
@@ -9,6 +9,7 @@ export function ContactsContainer() {
         <FilterButton />
         <SearchField />
       </FilterAndSearch>
+      <TableTitles />
     </Container>
   );
 }
