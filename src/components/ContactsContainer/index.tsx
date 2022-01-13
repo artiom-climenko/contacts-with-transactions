@@ -1,5 +1,5 @@
 import React from 'react';
-import { FilterButton } from '../FilterButton';
+import { FilterButton, SearchField } from '../../components';
 import { Container, FilterAndSearch } from './index.styles';
 
 export function ContactsContainer() {
@@ -7,6 +7,7 @@ export function ContactsContainer() {
     <Container>
       <FilterAndSearch>
         <FilterButton />
+        <SearchField />
       </FilterAndSearch>
     </Container>
   );
