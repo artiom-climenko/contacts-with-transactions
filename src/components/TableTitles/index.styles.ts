@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 export const TableTitlesWrapper = styled.div`
   display: grid;
-  grid-template-columns: 0.5fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 0.45fr 1.5fr 1.5fr 1fr 1fr 1fr;
   align-items: center;
   gap: 10px;
   padding: 13px 20px;

@@ -1,6 +1,11 @@
 import React from 'react';
 import { Container } from './index.styles';
-import { ContactsContainer, TabBar, PageTitle } from '../components';
+import {
+  ContactsContainer,
+  TabBar,
+  PageTitle,
+  SingleContact,
+} from '../components';
 
 export function DashboardPage() {
   return (
@@ -8,6 +13,7 @@ export function DashboardPage() {
       <PageTitle />
       <TabBar />
       <ContactsContainer />
+      <SingleContact />
     </Container>
   );
 }
