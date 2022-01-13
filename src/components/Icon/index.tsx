@@ -3,6 +3,7 @@ import sprite from '../../assets/icons/sprite.svg';
 
 export enum IconNames {
   arrowBack = 'arrowBack',
+  arrowNext = 'arrowNext',
   checkboxActive = 'checkboxActive',
   checkboxNeutral = 'checkboxNeutral',
   delete = 'delete',
@@ -15,16 +16,16 @@ export enum IconNames {
   breadcrumb = 'breadcrumb',
   radioActive = 'radioActive',
   radioNeutral = 'radioNeutral',
-  search = 'search'
+  search = 'search',
 }
 
-export interface IPropsIcon {
+export interface IIconProps {
   icon: IconNames;
   size: number;
   fill: string;
 }
 
-export function Icon({ size, fill, icon }: IPropsIcon) {
+export function Icon({ size, fill, icon }: IIconProps) {
   return (
     <svg width={size} height={size} fill={fill}>
       <use href={`${sprite}#${icon}`} />;
