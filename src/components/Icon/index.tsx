@@ -15,6 +15,7 @@ export enum IconNames {
   breadcrumb = 'breadcrumb',
   radioActive = 'radioActive',
   radioNeutral = 'radioNeutral',
+  search = 'search'
 }
 
 export interface IPropsIcon {
@@ -26,7 +27,7 @@ export interface IPropsIcon {
 export function Icon({ size, fill, icon }: IPropsIcon) {
   return (
     <svg width={size} height={size} fill={fill}>
-      <use href={sprite + `#${icon}`} />;
+      <use href={`${sprite}#${icon}`} />;
     </svg>
   );
 }
