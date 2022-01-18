@@ -7,8 +7,10 @@ import {
   TableTitles,
 } from '../../components';
 import { Container, FilterAndSearch } from './index.styles';
+import { useContacts } from '../../hooks';
 
 export function ContactsContainer() {
+  let {} = useContacts();
   return (
     <Container>
       <FilterAndSearch>
