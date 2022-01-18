@@ -10,7 +10,7 @@ import { Container, FilterAndSearch } from './index.styles';
 import { useContacts } from '../../hooks';
 
 export function ContactsContainer() {
-  let {} = useContacts();
+  let { contacts } = useContacts();
   return (
     <Container>
       <FilterAndSearch>

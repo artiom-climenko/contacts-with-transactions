@@ -22,3 +22,22 @@ export interface Contact {
 }
 
 export type CreateContactModel = Omit<Contact, 'id'>;
+
+export function getRandomElementFromArray<T>(array: Array<T>): T {
+  return array[Math.floor(Math.random() * array.length)];
+}
+
+export function normalizeContact(contact: Contact) {
+  return {
+    ...contact,
+    status: getRandomElementFromArray([
+      ContactStatus.ACTIVE,
+      ContactStatus.INACTIVE,
+    ]),
+    paymentStatus: getRandomElementFromArray([
+      ContactPaymentStatus.PAID,
+      ContactPaymentStatus.OVERDUE,
+      ContactPaymentStatus.UNPAID,
+    ]),
+  } as Contact;
+}
