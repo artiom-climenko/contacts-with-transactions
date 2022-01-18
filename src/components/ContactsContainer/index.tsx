@@ -1,5 +1,11 @@
 import React from 'react';
-import { FilterButton, SearchField, TableTitles } from '../../components';
+import {
+  FilterButton,
+  SectionPagination,
+  SearchField,
+  SingleContact,
+  TableTitles,
+} from '../../components';
 import { Container, FilterAndSearch } from './index.styles';
 
 export function ContactsContainer() {
@@ -10,6 +16,8 @@ export function ContactsContainer() {
         <SearchField />
       </FilterAndSearch>
       <TableTitles />
+      <SingleContact />
+      <SectionPagination />
     </Container>
   );
 }
