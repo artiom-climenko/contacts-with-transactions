@@ -5,6 +5,7 @@ import {
   CreateContactModel,
 } from '../entites';
 import { useCallback, useState } from 'react';
+import { API } from '../api';
 
 const CONTACTS: Array<Contact> = [
   {
@@ -22,22 +23,19 @@ const CONTACTS: Array<Contact> = [
 
 export function useContacts() {
   let [contacts, setContacts] = useState<Array<Contact>>(CONTACTS);
-  // let [isLoading, setLoading] = useState(false);
-  // let [error, setError] = useState('');
+  let [isLoading, setLoading] = useState(false);
+  let [error, setError] = useState('');
 
   let handleFetchContacts = useCallback(async () => {
-    // TODO add error handling
-    // TODO add isLoading
-    // try {
-    //   setLoading(true);
-    //
-    //   let res = await someting();
-    //   setContacts(res);
-    // } catch (e) {
-    //   setError(String(e));
-    // } finally {
-    //   setLoading(false);
-    // }
+    try {
+      setLoading(true);
+      let response = await API.get('/');
+      setContacts(response.data);
+    } catch (error) {
+      setError(String(error));
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
   let handleRemove = useCallback(async (contactId: string) => {
@@ -59,10 +57,13 @@ export function useContacts() {
   }, []);
 
   return {
-    contacts,
     handleFetchContacts,
     handleRemove,
     handleUpdate,
     handleCreate,
+
+    contacts,
+    isLoading,
+    error,
   };
 }

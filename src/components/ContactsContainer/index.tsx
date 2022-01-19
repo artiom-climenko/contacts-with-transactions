@@ -8,9 +8,11 @@ import {
 } from '../../components';
 import { Container, FilterAndSearch } from './index.styles';
 import { useContacts } from '../../hooks';
+import { Loader } from '../Loader';
+import { ErrorMessage } from '../ErrorMessage';
 
 export function ContactsContainer() {
-  let { contacts } = useContacts();
+  let { isLoading, error } = useContacts();
   return (
     <Container>
       <FilterAndSearch>
@@ -18,6 +20,8 @@ export function ContactsContainer() {
         <SearchField />
       </FilterAndSearch>
       <TableTitles />
+      {isLoading && <Loader />}
+      {error && <ErrorMessage message={error} />}
       <SingleContact />
       <SectionPagination />
     </Container>
