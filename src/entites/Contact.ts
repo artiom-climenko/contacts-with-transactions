@@ -19,6 +19,7 @@ export interface Contact {
   paymentOn: number;
   amount: number;
   currency: string;
+  currencySymbol: string;
 }
 
 export type CreateContactModel = Omit<Contact, 'id'>;

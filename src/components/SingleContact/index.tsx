@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo, useRef, useState } from 'react';
 import {
   Amount,
   Checkbox,
@@ -10,15 +10,43 @@ import {
   LastLogin,
   Name,
   PaymentDescription,
+  PaymentStatus,
   Status,
   TableColumn,
   ViewMore,
-  ViewMoreAndBreadcrumbsWrapper,
+  ViewMoreAndMoreWrapper,
 } from './index.styles';
-import { BreadcrumbButton } from '../TableTitles/index.styles';
+import { MoreButton } from '../TableTitles/index.styles';
 import { Icon, IconNames } from '../Icon';
+import { Contact } from '../../entites';
+import { Dropdown } from '../Dropdown';
+import { useOutsideClick } from '../../hooks/useOutsideClick';
 
-export function SingleContact() {
+export interface ISingleContactProps {
+  contact: Contact;
+}
+
+export function SingleContact({
+  contact: {
+    id,
+    displayName,
+    email,
+    status,
+    lastLogin,
+    paymentStatus,
+    paymentOn,
+    amount,
+    currency,
+    currencySymbol,
+  },
+}: ISingleContactProps) {
+  let [isOpen, setOpen] = useState(false);
+  let ref = useRef<HTMLDivElement>(null);
+  // @ts-ignore
+  useOutsideClick({ ref, onClick: () => setOpen(false) });
+
+  let newDateLogin = new Date(lastLogin);
+  let newDatePaid = new Date(paymentOn);
   return (
     <ContactWrapper>
       <CheckboxAndCollapseWrapper>
@@ -32,33 +60,57 @@ export function SingleContact() {
         </CollapseButton>
       </CheckboxAndCollapseWrapper>
       <TableColumn>
-        <Name>Justin Septimus</Name>
-        <Email href="mailto:example@email.com" target="_blank">
-          example@email.com
-        </Email>
+        <Name>{displayName}</Name>
+        <span>
+          <Email href={`mailto: ${email}`} target="_blank">
+            {email}
+          </Email>
+        </span>
       </TableColumn>
       <TableColumn>
-        <Status>Active</Status>
-        <LastLogin>Last login: 14/APR/2020</LastLogin>
+        <Status isActive={status === 'active'}>{status}</Status>
+        <LastLogin>
+          Last login:{' '}
+          {useMemo(
+            () =>
+              `${newDateLogin.getDate()}/${
+                newDateLogin.getMonth() + 1
+              }/${newDateLogin.getFullYear()}`,
+            [newDateLogin],
+          )}
+        </LastLogin>
       </TableColumn>
       <TableColumn>
-        <Status>Paid</Status>
-        <PaymentDescription>Paid on 15/APR/2020</PaymentDescription>
+        <PaymentStatus status={paymentStatus}>{paymentStatus}</PaymentStatus>
+        <PaymentDescription>
+          Paid on{' '}
+          {useMemo(
+            () =>
+              `${newDatePaid.getDate()}/${
+                newDatePaid.getMonth() + 1
+              }/${newDatePaid.getFullYear()}`,
+            [newDatePaid],
+          )}
+        </PaymentDescription>
       </TableColumn>
       <TableColumn>
-        <Amount>$200</Amount>
-        <Currency>USD</Currency>
+        <Amount>
+          {currencySymbol}
+          {amount}
+        </Amount>
+        <Currency>{currency}</Currency>
       </TableColumn>
-      <ViewMoreAndBreadcrumbsWrapper>
+      <ViewMoreAndMoreWrapper>
         <ViewMore>View More</ViewMore>
-        <BreadcrumbButton>
+        <MoreButton onClick={() => setOpen(true)}>
           <Icon
             icon={IconNames.breadcrumb}
             size={20}
             fill="var(--color-font-primary-icon)"
           />
-        </BreadcrumbButton>
-      </ViewMoreAndBreadcrumbsWrapper>
+        </MoreButton>
+        <Dropdown ref={ref} isOpen={isOpen} />
+      </ViewMoreAndMoreWrapper>
     </ContactWrapper>
   );
 }

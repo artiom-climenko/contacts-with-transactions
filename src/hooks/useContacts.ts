@@ -3,8 +3,9 @@ import {
   ContactPaymentStatus,
   ContactStatus,
   CreateContactModel,
+  normalizeContact,
 } from '../entites';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { API } from '../api';
 
 const CONTACTS: Array<Contact> = [
@@ -18,6 +19,7 @@ const CONTACTS: Array<Contact> = [
     paymentOn: 1642322185,
     amount: 0,
     currency: 'USD',
+    currencySymbol: '$',
   },
 ];
 
@@ -30,12 +32,18 @@ export function useContacts() {
     try {
       setLoading(true);
       let response = await API.get('/');
-      setContacts(response.data);
+      setContacts(
+        response.data.map((contact: Contact) => normalizeContact(contact)),
+      );
     } catch (error) {
       setError(String(error));
     } finally {
       setLoading(false);
     }
+  }, []);
+
+  useEffect(() => {
+    handleFetchContacts();
   }, []);
 
   let handleRemove = useCallback(async (contactId: string) => {
@@ -57,7 +65,6 @@ export function useContacts() {
   }, []);
 
   return {
-    handleFetchContacts,
     handleRemove,
     handleUpdate,
     handleCreate,

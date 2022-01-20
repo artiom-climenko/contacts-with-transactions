@@ -23,17 +23,17 @@ export const TabItem = styled.li<{ isActive: boolean }>`
   line-height: 1.2;
   cursor: pointer;
 
-  color: ${(props) =>
-    props.isActive
+  color: ${({ isActive }) =>
+    isActive
       ? 'var(--color-font-primary)'
       : 'var(--color-font-primary-variant)'};
 
   border-bottom: 2px solid;
 
-  border-bottom-color: ${(props) =>
-    props.isActive ? 'var(--color-font-primary)' : 'transparent'};
+  border-bottom-color: ${({ isActive }) =>
+    isActive ? 'var(--color-font-primary)' : 'transparent'};
 
   &:hover {
-    opacity: ${(props) => (props.isActive ? '1' : '0.8')};
+    opacity: ${({ isActive }) => (isActive ? '1' : '0.8')};
   }
 `;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import {
   FilterButton,
   SectionPagination,
@@ -12,7 +12,7 @@ import { Loader } from '../Loader';
 import { ErrorMessage } from '../ErrorMessage';
 
 export function ContactsContainer() {
-  let { isLoading, error } = useContacts();
+  let { isLoading, error, contacts } = useContacts();
   return (
     <Container>
       <FilterAndSearch>
@@ -22,7 +22,15 @@ export function ContactsContainer() {
       <TableTitles />
       {isLoading && <Loader />}
       {error && <ErrorMessage message={error} />}
-      <SingleContact />
+      <div>
+        {useMemo(
+          () =>
+            contacts.map((contact) => (
+              <SingleContact key={contact.id} contact={contact} />
+            )),
+          [contacts],
+        )}
+      </div>
       <SectionPagination />
     </Container>
   );
