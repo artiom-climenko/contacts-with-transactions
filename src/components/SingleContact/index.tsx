@@ -28,7 +28,6 @@ export interface ISingleContactProps {
 
 export function SingleContact({
   contact: {
-    id,
     displayName,
     email,
     status,
@@ -45,8 +44,20 @@ export function SingleContact({
   // @ts-ignore
   useOutsideClick({ ref, onClick: () => setOpen(false) });
 
-  let newDateLogin = new Date(lastLogin);
-  let newDatePaid = new Date(paymentOn);
+  let renderedLastLoginDate = useMemo(() => {
+    let newDateLogin = new Date(lastLogin);
+    return `${newDateLogin.getDate()}/${
+      newDateLogin.getMonth() + 1
+    }/${newDateLogin.getFullYear()}`;
+  }, [lastLogin]);
+
+  let renderedPaidOnDate = useMemo(() => {
+    let newDatePaid = new Date(paymentOn);
+    return `${newDatePaid.getDate()}/${
+      newDatePaid.getMonth() + 1
+    }/${newDatePaid.getFullYear()}`;
+  }, [paymentOn]);
+
   return (
     <ContactWrapper>
       <CheckboxAndCollapseWrapper>
@@ -69,29 +80,11 @@ export function SingleContact({
       </TableColumn>
       <TableColumn>
         <Status isActive={status === 'active'}>{status}</Status>
-        <LastLogin>
-          Last login:{' '}
-          {useMemo(
-            () =>
-              `${newDateLogin.getDate()}/${
-                newDateLogin.getMonth() + 1
-              }/${newDateLogin.getFullYear()}`,
-            [newDateLogin],
-          )}
-        </LastLogin>
+        <LastLogin>Last login: {renderedLastLoginDate}</LastLogin>
       </TableColumn>
       <TableColumn>
         <PaymentStatus status={paymentStatus}>{paymentStatus}</PaymentStatus>
-        <PaymentDescription>
-          Paid on{' '}
-          {useMemo(
-            () =>
-              `${newDatePaid.getDate()}/${
-                newDatePaid.getMonth() + 1
-              }/${newDatePaid.getFullYear()}`,
-            [newDatePaid],
-          )}
-        </PaymentDescription>
+        <PaymentDescription>Paid on {renderedPaidOnDate}</PaymentDescription>
       </TableColumn>
       <TableColumn>
         <Amount>

@@ -13,6 +13,15 @@ import { ErrorMessage } from '../ErrorMessage';
 
 export function ContactsContainer() {
   let { isLoading, error, contacts } = useContacts();
+
+  let renderedContacts = useMemo(
+    () =>
+      contacts.map((contact) => (
+        <SingleContact key={contact.id} contact={contact} />
+      )),
+    [contacts],
+  );
+
   return (
     <Container>
       <FilterAndSearch>
@@ -22,15 +31,7 @@ export function ContactsContainer() {
       <TableTitles />
       {isLoading && <Loader />}
       {error && <ErrorMessage message={error} />}
-      <div>
-        {useMemo(
-          () =>
-            contacts.map((contact) => (
-              <SingleContact key={contact.id} contact={contact} />
-            )),
-          [contacts],
-        )}
-      </div>
+      {renderedContacts}
       <SectionPagination />
     </Container>
   );
