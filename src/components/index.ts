@@ -7,3 +7,4 @@ export * from './SearchField';
 export * from './TableTitles';
 export * from './SingleContact';
 export * from './SectionPagination';
+export * from './Modal';

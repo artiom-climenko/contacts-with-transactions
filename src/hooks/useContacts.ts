@@ -27,12 +27,12 @@ export function useContacts() {
   let [contacts, setContacts] = useState<Array<Contact>>(CONTACTS);
   let [isLoading, setLoading] = useState(false);
   let [error, setError] = useState('');
-  let [isRemovingLoading, setRemoveLoading] = useState(false);
-  let [removeError, setRemoveError] = useState('');
-  let [isUpdatingLoading, setUpdateLoading] = useState(false);
-  let [updateError, setUpdateError] = useState('');
-  let [isCreatingLoading, setCreateLoading] = useState(false);
-  let [createError, setCreateError] = useState('');
+  let [isRemovingLoading, setRemovingLoading] = useState(false);
+  let [removingError, setRemovingError] = useState('');
+  let [isUpdatingLoading, setUpdatingLoading] = useState(false);
+  let [updatingError, setUpdatingError] = useState('');
+  let [isCreatingLoading, setCreatingLoading] = useState(false);
+  let [creatingError, setCreatingError] = useState('');
 
   let handleFetchContacts = useCallback(async () => {
     try {
@@ -55,13 +55,13 @@ export function useContacts() {
   let handleRemove = useCallback(
     async (contactId: string) => {
       try {
-        setRemoveLoading(true);
+        setRemovingLoading(true);
         let response = await API.delete(`/${contactId}`);
         handleFetchContacts();
       } catch (error) {
-        setRemoveError(String(error));
+        setRemovingError(String(error));
       } finally {
-        setRemoveLoading(false);
+        setRemovingLoading(false);
       }
     },
     [handleFetchContacts],
@@ -70,13 +70,13 @@ export function useContacts() {
   let handleUpdate = useCallback(
     async (contact: Contact) => {
       try {
-        setUpdateLoading(true);
+        setUpdatingLoading(true);
         let response = await API.put(`/${contact}`);
         handleFetchContacts();
       } catch (error) {
-        setUpdateError(String(error));
+        setUpdatingError(String(error));
       } finally {
-        setUpdateLoading(false);
+        setUpdatingLoading(false);
       }
     },
     [handleFetchContacts],
@@ -85,21 +85,21 @@ export function useContacts() {
   let handleCreate = useCallback(
     async (contact: CreateContactModel) => {
       try {
-        setCreateLoading(true);
+        setCreatingLoading(true);
         let response = await API.post(`/${contact}`);
         handleFetchContacts();
       } catch (error) {
-        setCreateError(String(error));
+        setCreatingError(String(error));
       } finally {
-        setUpdateLoading(false);
+        setUpdatingLoading(false);
       }
     },
     [handleFetchContacts],
   );
 
   let globalError = useMemo(
-    () => error || removeError || updateError || createError,
-    [error, removeError, updateError, createError],
+    () => error || removingError || updatingError || creatingError,
+    [error, removingError, updatingError, creatingError],
   );
 
   return {
