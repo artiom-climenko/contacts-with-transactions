@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  BreadcrumbButton,
+  MoreButton,
   Checkbox,
   ColumnTitle,
   TableTitlesWrapper,
@@ -15,13 +15,13 @@ export function TableTitles() {
       <ColumnTitle>User status</ColumnTitle>
       <ColumnTitle>Payment status</ColumnTitle>
       <ColumnTitle>Amount</ColumnTitle>
-      <BreadcrumbButton>
+      <MoreButton>
         <Icon
           icon={IconNames.breadcrumb}
           size={20}
           fill="var(--color-font-primary-icon)"
         />
-      </BreadcrumbButton>
+      </MoreButton>
     </TableTitlesWrapper>
   );
 }

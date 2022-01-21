@@ -5,6 +5,6 @@ export interface IPageNotFoundProps extends RouteComponentProps {
   alternative: string;
 }
 
-export function PageNotFound(props: IPageNotFoundProps) {
-  return <Redirect to={props.alternative} noThrow />;
+export function PageNotFound({ alternative }: IPageNotFoundProps) {
+  return <Redirect to={alternative} noThrow />;
 }

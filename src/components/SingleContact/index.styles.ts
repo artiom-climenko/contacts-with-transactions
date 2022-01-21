@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 export const ContactWrapper = styled.div`
   display: grid;
-  grid-template-columns: 0.45fr 1.5fr 1.5fr 1fr 1fr 1fr;
+  grid-template-columns: 0.45fr 2fr 1.5fr 1fr 0.5fr 0.7fr;
   align-items: center;
   gap: 10px;
   min-height: 60px;
@@ -57,7 +57,7 @@ export const Email = styled.a`
   }
 `;
 
-export const Status = styled.div`
+export const BaseStatus = styled.div`
   position: relative;
   align-self: start;
   padding: 2px 5px 2px 16px;
@@ -66,7 +66,7 @@ export const Status = styled.div`
   font-weight: 500;
   font-size: 12px;
   line-height: 1.2;
-  color: var(--color-primary);
+  text-transform: capitalize;
   &::before {
     content: '';
     display: block;
@@ -76,8 +76,47 @@ export const Status = styled.div`
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background-color: var(--color-primary);
   }
+`;
+
+export const Status = styled(BaseStatus)<{ isActive: boolean }>`
+  color: ${({ isActive }) =>
+    isActive ? 'var(--color-primary)' : 'var(--color-font-primary-variant)'};
+  &::before {
+    background-color: ${({ isActive }) =>
+      isActive ? 'var(--color-primary)' : 'var(--color-font-primary-variant)'};
+  }
+`;
+
+export const PaymentStatus = styled(BaseStatus)<{ status: string }>`
+  color: ${({ status }) => {
+    if (status === 'paid') {
+      return 'var(--color-font-positive)';
+    }
+    if (status === 'unpaid') {
+      return 'var(--color-font-neutral)';
+    }
+    return 'var(--color-font-negative)';
+  }};
+  background-color: ${({ status }) => {
+    if (status === 'paid') {
+      return 'var(--color-background-positive)';
+    }
+    if (status === 'unpaid') {
+      return 'var(--color-background-neutral)';
+    }
+    return 'var(--color-background-negative)';
+  }};
+  &::before {
+    background-color: ${({ status }) => {
+      if (status === 'paid') {
+        return 'var(--color-font-positive)';
+      }
+      if (status === 'unpaid') {
+        return 'var(--color-font-neutral)';
+      }
+      return 'var(--color-font-negative)';
+    }}
 `;
 
 export const LastLogin = styled.div`
@@ -109,7 +148,8 @@ export const Currency = styled.div`
   color: var(--color-font-primary);
 `;
 
-export const ViewMoreAndBreadcrumbsWrapper = styled.div`
+export const ViewMoreAndMoreWrapper = styled.div`
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;

@@ -10,6 +10,10 @@ let globalStyles = css`
     --color-font-stroke: #c6c2de;
     --color-font-positive: #007f00;
     --color-font-negative: #d30000;
+    --color-font-neutral: #965e00;
+    --color-background-positive: #cdffcd;
+    --color-background-negative: #ffe0e0;
+    --color-background-neutral: #ffeccc;
     --color-background-primary: #ffffff;
     --color-background-parent: #f2f0f9;
     --color-background-stripe: #f4f2ff;
