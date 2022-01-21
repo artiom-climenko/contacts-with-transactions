@@ -12,7 +12,7 @@ import { Loader } from '../Loader';
 import { ErrorMessage } from '../ErrorMessage';
 
 export function ContactsContainer() {
-  let { isLoading, error, contacts } = useContacts();
+  let { isLoading, globalError, contacts } = useContacts();
 
   let renderedContacts = useMemo(
     () =>
@@ -30,7 +30,7 @@ export function ContactsContainer() {
       </FilterAndSearch>
       <TableTitles />
       {isLoading && <Loader />}
-      {error && <ErrorMessage message={error} />}
+      {globalError && <ErrorMessage message={globalError} />}
       {renderedContacts}
       <SectionPagination />
     </Container>
