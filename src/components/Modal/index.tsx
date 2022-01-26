@@ -2,12 +2,13 @@ import React, { ReactNode } from 'react';
 import {
   ChildrenContainer,
   Wrapper,
-  CloseModalButton,
   ModalHeader,
   ModalTitle,
   ModalButton,
   ModalFooter,
+  CloseModalButton,
 } from './index.styles';
+import { Icon, IconNames } from '../Icon';
 
 export interface IModalProps {
   children: ReactNode;
@@ -15,15 +16,15 @@ export interface IModalProps {
   onClose: () => void;
   onSubmit: () => void;
   modalTitle: string;
-  confirmationButton: string;
-  rejectButton: string;
+  confirmationButtonTitle: string;
+  rejectButtonTitle: string;
 }
 
 export function Modal({
   children,
   modalTitle,
-  confirmationButton,
-  rejectButton,
+  confirmationButtonTitle,
+  rejectButtonTitle,
   onClose,
   onSubmit,
 }: IModalProps) {
@@ -32,15 +33,21 @@ export function Modal({
       <ChildrenContainer>
         <ModalHeader>
           <ModalTitle>{modalTitle}</ModalTitle>
-          <CloseModalButton />
+          <CloseModalButton onClick={onClose}>
+            <Icon
+              icon={IconNames.modalClose}
+              size={20}
+              fill="var(--color-primary)"
+            />
+          </CloseModalButton>
         </ModalHeader>
         {children}
         <ModalFooter>
           <ModalButton type="submit" onClick={onClose}>
-            {confirmationButton}
+            {confirmationButtonTitle}
           </ModalButton>
           <ModalButton type="submit" onClick={onSubmit}>
-            {rejectButton}
+            {rejectButtonTitle}
           </ModalButton>
         </ModalFooter>
       </ChildrenContainer>

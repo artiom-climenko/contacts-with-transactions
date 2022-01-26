@@ -17,6 +17,7 @@ export enum IconNames {
   radioActive = 'radioActive',
   radioNeutral = 'radioNeutral',
   search = 'search',
+  modalClose = 'modalClose',
 }
 
 export interface IIconProps {

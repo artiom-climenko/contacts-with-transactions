@@ -8,3 +8,6 @@ export * from './TableTitles';
 export * from './SingleContact';
 export * from './SectionPagination';
 export * from './Modal';
+export * from './InputField';
+export * from './SelectField';
+export * from './LabelField';

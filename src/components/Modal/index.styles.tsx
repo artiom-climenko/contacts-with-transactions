@@ -7,16 +7,14 @@ export const Wrapper = styled.div`
   left: 0;
   right: 0;
   z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: rgba(0, 0, 0, 0.7);
 `;
 
 export const ChildrenContainer = styled.div`
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 100;
-  min-width: 380px;
+  min-width: 400px;
   background-color: var(--color-background-primary);
   border-radius: 8px;
 `;
@@ -35,25 +33,11 @@ export const ModalTitle = styled.div`
 `;
 
 export const CloseModalButton = styled.button`
-  width: 24px;
-  height: 24px;
+  width: 30px;
+  height: 20px;
   background-color: transparent;
   border: none;
   cursor: pointer;
-  &:before,
-  :after {
-    content: '';
-    position: absolute;
-    width: 25px;
-    height: 1px;
-    background-color: var(--color-primary);
-  }
-  &:before {
-    transform: translate(-50%, -50%) rotate(45deg);
-  }
-  &:after {
-    transform: translate(-50%, -50%) rotate(-45deg);
-  }
   &:hover {
     opacity: 0.8;
   }
