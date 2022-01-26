@@ -9,6 +9,7 @@ export interface IPropsInputField {
   placeholder?: string;
   value: string;
   onChange: ChangeEventHandler;
+  onBlur?: ChangeEventHandler;
   required?: boolean;
   error?: string;
   title: string;
@@ -24,6 +25,7 @@ export function InputField({
   required,
   error,
   title,
+  onBlur,
 }: IPropsInputField) {
   return (
     <InputFieldWrapper>
@@ -37,6 +39,7 @@ export function InputField({
           value={value}
           onChange={onChange}
           required={required}
+          onBlur={onBlur}
         />
       </LabelField>
       {error && <InputWarning>{error}</InputWarning>}

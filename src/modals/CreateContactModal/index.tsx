@@ -33,6 +33,7 @@ const validationSchema = yup.object().shape({
         dayjs(value).unix() >= todayInUnix &&
         dayjs(value).unix() <= endOfTheWeekInUnix,
     ),
+  paymentStatus: yup.string().required('Required field!'),
   email: yup.string().email('Invalid email').required('Required field!'),
 });
 
@@ -62,9 +63,13 @@ export function CreateContactModal(props: ICreateContactModalProps) {
     formik,
     'amount',
   );
+  let { touchableError: touchedPaymentStatusError } = useTouchableError(
+    formik,
+    'paymentStatus',
+  );
   let { touchableError: touchedPaymentDateError } = useTouchableError(
     formik,
-    'amount',
+    'paymentDate',
   );
   return (
     <Modal {...props}>
@@ -76,6 +81,7 @@ export function CreateContactModal(props: ICreateContactModalProps) {
           placeholder="Enter a name"
           value={formik.values.contactName}
           onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
           required
           title="Name"
           error={touchedContactNameError}
@@ -87,6 +93,7 @@ export function CreateContactModal(props: ICreateContactModalProps) {
           placeholder="Enter email"
           value={formik.values.email}
           onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
           required
           title="Email"
           error={touchedEmailError}
@@ -98,6 +105,7 @@ export function CreateContactModal(props: ICreateContactModalProps) {
           placeholder="Enter the amount"
           value={formik.values.amount}
           onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
           required
           title="Amount"
           error={touchedAmountError}
@@ -107,7 +115,9 @@ export function CreateContactModal(props: ICreateContactModalProps) {
           name="paymentStatus"
           value={formik.values.paymentStatus}
           onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
           title="Payment status"
+          error={touchedPaymentStatusError}
         />
         <InputField
           type="date"
@@ -115,6 +125,7 @@ export function CreateContactModal(props: ICreateContactModalProps) {
           name="paymentDate"
           value={formik.values.paymentDate}
           onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
           required
           title="Payment date"
           error={touchedPaymentDateError}

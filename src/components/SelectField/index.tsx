@@ -1,17 +1,13 @@
 import React, { ChangeEventHandler } from 'react';
-import {
-  SelectFieldWrapper,
-  SelectStyles,
-  SelectWarning,
-} from './index.styles';
-import Select, { SingleValue } from 'react-select';
 import { LabelField } from '../LabelField';
+import { Select, SelectFieldWrapper, SelectWarning } from './index.styles';
 
 export interface ISelectFieldProps {
   id: string;
   name: string;
   value: string;
   onChange: ChangeEventHandler;
+  onBlur?: ChangeEventHandler;
   error?: string;
   title: string;
 }
@@ -21,28 +17,26 @@ export function SelectField({
   name,
   value,
   onChange,
+  onBlur,
   error,
   title,
 }: ISelectFieldProps) {
-  const optionsSelect: any[] = [
-    { value: 'paid', label: 'Paid' },
-    { value: 'unpaid', label: 'Unpaid' },
-    { value: 'overdue', label: 'Overdue' },
-  ];
   return (
-    <SelectFieldWrapper style={{}}>
+    <SelectFieldWrapper>
       <LabelField>
         {title}
         <Select
-          options={optionsSelect}
-          styles={SelectStyles}
           id={id}
           name={name}
           value={value}
-          onChange={(event: SingleValue<string>) =>
-            form.setFieldValue('field-name', value)
-          }
-        />
+          onChange={onChange}
+          onBlur={onBlur}
+        >
+          <option selected>Select the status</option>
+          <option value="Paid">Paid</option>
+          <option value="Unpaid">Unpaid</option>
+          <option value="Overdue">Overdue</option>
+        </Select>
       </LabelField>
       {error && <SelectWarning>{error}</SelectWarning>}
     </SelectFieldWrapper>
