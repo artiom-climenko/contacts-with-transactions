@@ -1,6 +1,7 @@
 import React, { ChangeEventHandler } from 'react';
 import { LabelField } from '../LabelField';
 import { Select, SelectFieldWrapper, SelectWarning } from './index.styles';
+import { useTranslation } from 'react-i18next';
 
 export interface ISelectFieldProps {
   id: string;
@@ -21,6 +22,8 @@ export function SelectField({
   error,
   title,
 }: ISelectFieldProps) {
+  const { t } = useTranslation();
+
   return (
     <SelectFieldWrapper>
       <LabelField>
@@ -32,10 +35,18 @@ export function SelectField({
           onChange={onChange}
           onBlur={onBlur}
         >
-          <option selected>Select the status</option>
-          <option value="Paid">Paid</option>
-          <option value="Unpaid">Unpaid</option>
-          <option value="Overdue">Overdue</option>
+          <option selected>
+            {t('modals.createContact.form.select.selected')}
+          </option>
+          <option value="Paid">
+            {t('modals.createContact.form.select.paid')}
+          </option>
+          <option value="Unpaid">
+            {t('modals.createContact.form.select.unpaid')}
+          </option>
+          <option value="Overdue">
+            {t('modals.createContact.form.select.overdue')}
+          </option>
         </Select>
       </LabelField>
       {error && <SelectWarning>{error}</SelectWarning>}

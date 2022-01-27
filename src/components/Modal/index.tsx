@@ -44,10 +44,10 @@ export function Modal({
         {children}
         <ModalFooter>
           <ModalButton type="submit" onClick={onClose}>
-            {confirmationButtonTitle}
+            {rejectButtonTitle}
           </ModalButton>
           <ModalButton type="submit" onClick={onSubmit}>
-            {rejectButtonTitle}
+            {confirmationButtonTitle}
           </ModalButton>
         </ModalFooter>
       </ChildrenContainer>

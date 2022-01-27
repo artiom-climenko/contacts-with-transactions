@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { BlockWithTabs, TabItem, TabList } from './index.styles';
+import { useTranslation } from 'react-i18next';
 
 export function TabBar() {
   const [activeTab, setActiveTab] = useState('All');
@@ -17,23 +18,25 @@ export function TabBar() {
     setActiveTab('Overdue');
   }, []);
 
+  const { t } = useTranslation();
+
   return (
     <BlockWithTabs>
       <TabList>
         <TabItem isActive={activeTab === 'All'} onClick={handleTheAllTab}>
-          All
+          {t('tabBar.all')}
         </TabItem>
         <TabItem isActive={activeTab === 'Paid'} onClick={handleThePaidTab}>
-          Paid
+          {t('tabBar.paid')}
         </TabItem>
         <TabItem isActive={activeTab === 'Unpaid'} onClick={handleTheUnpaidTab}>
-          Unpaid
+          {t('tabBar.unpaid')}
         </TabItem>
         <TabItem
           isActive={activeTab === 'Overdue'}
           onClick={handleTheOverdueTab}
         >
-          Overdue
+          {t('tabBar.overdue')}
         </TabItem>
       </TabList>
     </BlockWithTabs>

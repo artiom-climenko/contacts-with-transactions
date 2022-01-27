@@ -1,5 +1,7 @@
 import { css, Global } from '@emotion/react';
+import React, { Suspense } from 'react';
 import { Router } from './router';
+import '../i18n';
 
 let globalStyles = css`
   :root {
@@ -35,9 +37,9 @@ let globalStyles = css`
 
 export function App() {
   return (
-    <>
+    <Suspense fallback={<div>Loading...</div>}>
       <Router />
       <Global styles={globalStyles} />
-    </>
+    </Suspense>
   );
 }

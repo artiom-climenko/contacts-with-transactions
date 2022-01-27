@@ -21,6 +21,8 @@ import { Icon, IconNames } from '../Icon';
 import { Contact } from '../../entites';
 import { Dropdown } from '../Dropdown';
 import { useOutsideClick } from '../../hooks/useOutsideClick';
+import { useTranslation } from 'react-i18next';
+import * as dayjs from 'dayjs';
 
 export interface ISingleContactProps {
   contact: Contact;
@@ -44,18 +46,14 @@ export function SingleContact({
   // @ts-ignore
   useOutsideClick({ ref, onClick: () => setOpen(false) });
 
+  const { t } = useTranslation();
+
   let renderedLastLoginDate = useMemo(() => {
-    let newDateLogin = new Date(lastLogin);
-    return `${newDateLogin.getDate()}/${
-      newDateLogin.getMonth() + 1
-    }/${newDateLogin.getFullYear()}`;
+    return dayjs(lastLogin).format('DD/MMM/YYYY').toUpperCase();
   }, [lastLogin]);
 
   let renderedPaidOnDate = useMemo(() => {
-    let newDatePaid = new Date(paymentOn);
-    return `${newDatePaid.getDate()}/${
-      newDatePaid.getMonth() + 1
-    }/${newDatePaid.getFullYear()}`;
+    return dayjs(paymentOn).format('DD/MMM/YYYY').toUpperCase();
   }, [paymentOn]);
 
   return (
@@ -79,12 +77,20 @@ export function SingleContact({
         </span>
       </TableColumn>
       <TableColumn>
-        <Status isActive={status === 'active'}>{status}</Status>
-        <LastLogin>Last login: {renderedLastLoginDate}</LastLogin>
+        <Status isActive={status === 'active'}>
+          {t(`singleContact.userStatus.${status}`)}
+        </Status>
+        <LastLogin>
+          {t('singleContact.lastLogin')} {renderedLastLoginDate}
+        </LastLogin>
       </TableColumn>
       <TableColumn>
-        <PaymentStatus status={paymentStatus}>{paymentStatus}</PaymentStatus>
-        <PaymentDescription>Paid on {renderedPaidOnDate}</PaymentDescription>
+        <PaymentStatus status={paymentStatus}>
+          {t(`singleContact.paymentStatus.${paymentStatus}`)}
+        </PaymentStatus>
+        <PaymentDescription>
+          {t('singleContact.paidOn')} {renderedPaidOnDate}
+        </PaymentDescription>
       </TableColumn>
       <TableColumn>
         <Amount>
@@ -94,7 +100,7 @@ export function SingleContact({
         <Currency>{currency}</Currency>
       </TableColumn>
       <ViewMoreAndMoreWrapper>
-        <ViewMore>View More</ViewMore>
+        <ViewMore>{t('singleContact.viewMore')}</ViewMore>
         <MoreButton onClick={() => setOpen(true)}>
           <Icon
             icon={IconNames.breadcrumb}

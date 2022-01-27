@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 export interface IPropsTotalPages {
   firstContactOnThePage: number;
@@ -11,9 +12,12 @@ export function TotalPages({
   lastContactOnThePage,
   totalContacts,
 }: IPropsTotalPages) {
+  const { t } = useTranslation();
+
   return (
     <span>
-      {firstContactOnThePage}-{lastContactOnThePage} of {totalContacts}
+      {firstContactOnThePage}-{lastContactOnThePage} {t('totalPages')}{' '}
+      {totalContacts}
     </span>
   );
 }
