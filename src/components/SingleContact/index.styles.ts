@@ -7,7 +7,7 @@ export const ContactWrapper = styled.div`
   gap: 10px;
   min-height: 60px;
   padding: 10px 20px;
-  background-color: var(--color-background-primary);
+  background-color: ${(props) => props.theme.colorBackgroundPrimary};
 `;
 
 export const CheckboxAndCollapseWrapper = styled.div`
@@ -43,7 +43,7 @@ export const Name = styled.div`
   font-weight: 500;
   font-size: 14px;
   line-height: 1.2;
-  color: var(--color-font-primary);
+  color: ${(props) => props.theme.colorFontPrimary};
 `;
 
 export const Email = styled.a`
@@ -51,7 +51,7 @@ export const Email = styled.a`
   font-size: 14px;
   line-height: 1.2;
   letter-spacing: 0.05em;
-  color: var(--color-font-primary-variant);
+  color: ${(props) => props.theme.colorFontPrimaryVariant};
   &:hover {
     opacity: 0.8;
   }
@@ -122,14 +122,14 @@ export const LastLogin = styled.div`
   font-weight: 500;
   font-size: 12px;
   line-height: 1.2;
-  color: var(--color-font-primary-variant);
+  color: ${(props) => props.theme.colorFontPrimaryVariant};
 `;
 
 export const PaymentDescription = styled.div`
   font-weight: 500;
   font-size: 12px;
   line-height: 1.2;
-  color: var(--color-font-primary);
+  color: ${(props) => props.theme.colorFontPrimary};
 `;
 
 export const Amount = styled.div`
@@ -138,13 +138,13 @@ export const Amount = styled.div`
   font-size: 14px;
   line-height: 1.2;
   text-transform: uppercase;
-  color: var(--color-font-primary);
+  color: ${(props) => props.theme.colorFontPrimary};
 `;
 
 export const Currency = styled.div`
   align-self: end;
   font-size: 12px;
-  color: var(--color-font-primary);
+  color: ${(props) => props.theme.colorFontPrimary};
 `;
 
 export const ViewMoreAndMoreWrapper = styled.div`
@@ -159,7 +159,7 @@ export const ViewMore = styled.div`
   font-weight: 500;
   font-size: 12px;
   line-height: 1.2;
-  color: var(--color-font-primary-variant);
+  color: ${(props) => props.theme.colorFontPrimaryVariant};
   cursor: pointer;
   &:hover {
     opacity: 0.8;

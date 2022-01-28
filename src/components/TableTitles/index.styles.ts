@@ -6,7 +6,7 @@ export const TableTitlesWrapper = styled.div`
   align-items: center;
   gap: 10px;
   padding: 13px 20px;
-  background-color: var(--color-background-stripe);
+  background-color: ${(props) => props.theme.colorBackgroundStripe};
 `;
 
 export const ColumnTitle = styled.div`
@@ -15,7 +15,7 @@ export const ColumnTitle = styled.div`
   line-height: 1.2;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: var(--color-font-primary-variant);
+  color: ${(props) => props.theme.colorFontPrimaryVariant};
   &:nth-child(5) {
     justify-self: end;
   }

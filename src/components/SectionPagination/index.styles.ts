@@ -5,7 +5,7 @@ export const PaginationWrapper = styled.div`
   justify-content: right;
   align-items: center;
   padding: 15px 20px;
-  background-color: var(--color-background-stripe);
+  background-color: ${(props) => props.theme.colorBackgroundStripe};
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
 `;
@@ -14,7 +14,7 @@ export const PaginationElement = styled.div`
   font-weight: 600;
   font-size: 12px;
   line-height: 1.2;
-  color: var(--color-font-primary-variant);
+  color: ${(props) => props.theme.colorFontPrimaryVariant};
   &:not(:first-child) {
     margin-left: 50px;
   }

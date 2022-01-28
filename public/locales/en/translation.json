@@ -1,5 +1,11 @@
 {
   "title": "Payments",
+  "multiDark": {
+    "changeTo": "Change to",
+    "mode": "mode",
+    "light": "light",
+    "dark": "dark"
+  },
   "tabBar": {
     "all": "All",
     "paid": "Paid",

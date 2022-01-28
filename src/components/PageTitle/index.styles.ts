@@ -11,21 +11,19 @@ export const Title = styled.div`
   font-size: 14px;
   line-height: 1.2;
   text-transform: uppercase;
-  color: var(--color-font-primary-variant);
+  color: ${(props) => props.theme.colorFontPrimaryVariant};
 `;
 
 export const LanguagesChangeButton = styled.button`
   padding: 5px;
+  margin-left: 5px;
   font-size: 14px;
   border: 1px solid var(--color-font-stroke);
   border-radius: 6px;
-  color: var(--color-font-primary);
-  background-color: var(--color-background-stripe);
+  color: ${(props) => props.theme.colorFontPrimary};
+  background-color: ${(props) => props.theme.colorBackgroundButton};
   cursor: pointer;
   &:hover {
     border: 1px solid var(--color-primary);
-  }
-  &:not(:first-child) {
-    margin-left: 5px;
   }
 `;

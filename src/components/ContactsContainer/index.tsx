@@ -21,7 +21,6 @@ export function ContactsContainer() {
       )),
     [contacts],
   );
-
   return (
     <Container>
       <FilterAndSearch>

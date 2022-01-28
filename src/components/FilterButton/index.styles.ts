@@ -10,7 +10,7 @@ export const Button = styled.button`
   border-radius: 6px;
   cursor: pointer;
   &:hover {
-    opacity: 0.8;
+    border: 1px solid var(--color-primary);
   }
 `;
 

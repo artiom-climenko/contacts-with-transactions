@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 export const Container = styled.div`
   margin-top: 16px;
-  background-color: var(--color-background-primary);
+  background-color: ${(props) => props.theme.colorBackgroundPrimary};
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   border-radius: 8px;
 `;
