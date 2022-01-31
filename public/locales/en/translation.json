@@ -1,0 +1,79 @@
+{
+  "title": "Payments",
+  "tabBar": {
+    "all": "All",
+    "paid": "Paid",
+    "unpaid": "Unpaid",
+    "overdue": "Overdue"
+  },
+  "filterButton": "Filter",
+  "searchField": "Search Users by Name, Email or Date",
+  "tableTitles": {
+    "name": "Name",
+    "userStatus": "User status",
+    "paymentStatus": "Payment status",
+    "amount": "Amount"
+  },
+  "singleContact": {
+    "lastLogin": "Last login:",
+    "paidOn": "Paid on",
+    "viewMore": "View More",
+    "userStatus": {
+      "active": "Active",
+      "inactive": "Inactive"
+    },
+    "paymentStatus": {
+      "paid": "Paid",
+      "unpaid": "Unpaid",
+      "overdue": "Overdue"
+    }
+  },
+  "dropdown": {
+    "edit": "Edit",
+    "viewProfile": "View Profile",
+    "delete": "Delete"
+  },
+  "rowsPerPage": "Rows per page:",
+  "totalPages": "of",
+  "modals": {
+    "createContact": {
+      "form": {
+        "name": "Name",
+        "email": "Email",
+        "amount": "Amount",
+        "paymentStatus": "Payment status",
+        "select": {
+          "selected": "Select the status",
+          "paid": "Paid",
+          "unpaid": "Unpaid",
+          "overdue": "Overdue"
+        },
+        "paymentDate": "Payment date",
+        "placeholders": {
+          "name": "Enter a name",
+          "email": "Enter email",
+          "amount": "Enter the amount"
+        },
+        "validation": {
+          "tooShort": "Too Short!"
+        }
+      }
+    }
+  },
+  "validation": {
+    "required": "Required field!",
+    "contactName": {
+      "min": "Too Short!",
+      "max": "Too Long!"
+    },
+    "amount": {
+      "typeError": "Amount must be a number!",
+      "min": "The amount should not be negative!",
+      "test": "The amount must be a multiple of 50!"
+    },
+    "paymentDate": {
+      "test": "Choose a date before the end of the week!"
+    },
+    "email": "Invalid email!"
+  }
+}

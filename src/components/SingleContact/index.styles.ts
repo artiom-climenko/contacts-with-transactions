@@ -66,7 +66,6 @@ export const BaseStatus = styled.div`
   font-weight: 500;
   font-size: 12px;
   line-height: 1.2;
-  text-transform: capitalize;
   &::before {
     content: '';
     display: block;

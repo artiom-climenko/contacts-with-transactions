@@ -6,15 +6,18 @@ import {
   TableTitlesWrapper,
 } from './index.styles';
 import { Icon, IconNames } from '../Icon';
+import { useTranslation } from 'react-i18next';
 
 export function TableTitles() {
+  const { t } = useTranslation();
+
   return (
     <TableTitlesWrapper>
       <Checkbox type="checkbox" />
-      <ColumnTitle>Name</ColumnTitle>
-      <ColumnTitle>User status</ColumnTitle>
-      <ColumnTitle>Payment status</ColumnTitle>
-      <ColumnTitle>Amount</ColumnTitle>
+      <ColumnTitle>{t('tableTitles.name')}</ColumnTitle>
+      <ColumnTitle>{t('tableTitles.userStatus')}</ColumnTitle>
+      <ColumnTitle>{t('tableTitles.paymentStatus')}</ColumnTitle>
+      <ColumnTitle>{t('tableTitles.amount')}</ColumnTitle>
       <MoreButton>
         <Icon
           icon={IconNames.breadcrumb}

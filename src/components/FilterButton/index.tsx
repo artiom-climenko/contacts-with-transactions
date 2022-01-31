@@ -1,8 +1,11 @@
 import React from 'react';
 import { Button, ButtonText } from './index.styles';
 import { Icon, IconNames } from '../Icon';
+import { useTranslation } from 'react-i18next';
 
 export function FilterButton() {
+  const { t } = useTranslation();
+
   return (
     <Button>
       <Icon
@@ -10,7 +13,7 @@ export function FilterButton() {
         size={20}
         fill="var(--color-font-primary-icon)"
       />
-      <ButtonText>Filter</ButtonText>
+      <ButtonText>{t('filterButton')}</ButtonText>
     </Button>
   );
 }

@@ -1,0 +1,79 @@
+{
+  "title": "Платежи",
+  "tabBar": {
+    "all": "Все",
+    "paid": "Оплаченные",
+    "unpaid": "Неоплаченные",
+    "overdue": "Просроченные"
+  },
+  "filterButton": "Фильтр",
+  "searchField": "Поиск по имени, электронной почте или дате",
+  "tableTitles": {
+    "name": "Имя",
+    "userStatus": "Статус пользователя",
+    "paymentStatus": "Статус платежа",
+    "amount": "Сумма"
+  },
+  "singleContact": {
+    "lastLogin": "Был в сети:",
+    "paidOn": "Оплачен",
+    "viewMore": "Больше",
+    "userStatus": {
+      "active": "В сети",
+      "inactive": "Не в сети"
+    },
+    "paymentStatus": {
+      "paid": "Оплачен",
+      "unpaid": "Не оплачен",
+      "overdue": "Просрочен"
+    }
+  },
+  "dropdown": {
+    "edit": "Изменить",
+    "viewProfile": "К профилю",
+    "delete": "Удалить"
+  },
+  "rowsPerPage": "Кол-во контактов на странице:",
+  "totalPages": "из",
+  "modals": {
+    "createContact": {
+      "form": {
+        "name": "Имя",
+        "email": "Электронная почта",
+        "amount": "Сумма",
+        "paymentStatus": "Статус платежа",
+        "select": {
+          "selected": "Выберите статус",
+          "paid": "Оплачен",
+          "unpaid": "Не оплачен",
+          "overdue": "Просрочен"
+        },
+        "paymentDate": "Дата платежа",
+        "placeholders": {
+          "name": "Введите имя",
+          "email": "Введите электронную почту",
+          "amount": "Введите сумму"
+        },
+        "validation": {
+          "tooShort": "Слишком короткий"
+        }
+      }
+    }
+  },
+  "validation": {
+    "required": "Обязательное поле!",
+    "contactName": {
+      "min": "Слишком короткое!",
+      "max": "Слишком длинное!"
+    },
+    "amount": {
+      "typeError": "Сумма должна быть числом!",
+      "min": "Сумма не должна быть отрицательной!",
+      "test": "Сумма должна быть кратной 50!"
+    },
+    "paymentDate": {
+      "test": "Выберите дату до конца недели!"
+    },
+    "email": "Неверный адрес электронной почты!"
+  }
+}
