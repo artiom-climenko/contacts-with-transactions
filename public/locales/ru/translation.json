@@ -9,6 +9,7 @@
   },
   "filterButton": "Фильтр",
   "searchField": "Поиск по имени, электронной почте или дате",
+  "createContact": "Создать Контакт",
   "tableTitles": {
     "name": "Имя",
     "userStatus": "Статус пользователя",
