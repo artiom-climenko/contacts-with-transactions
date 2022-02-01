@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
-export const DropdownWrapper = styled.div<{ isOpen: boolean }>`
-  display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
+export const DropdownWrapper = styled.div<{ isOpenDropdown: boolean }>`
+  display: ${({ isOpenDropdown }) => (isOpenDropdown ? 'block' : 'none')};
   position: absolute;
   top: 0;
   right: 5px;

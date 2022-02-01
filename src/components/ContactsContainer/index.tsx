@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import {
   FilterButton,
   SectionPagination,
@@ -10,20 +10,34 @@ import { Container, FilterAndSearch } from './index.styles';
 import { useContacts } from '../../hooks';
 import { Loader } from '../Loader';
 import { ErrorMessage } from '../ErrorMessage';
+import { DeleteContactModal } from '../../modals';
 
 export function ContactsContainer() {
   let { isLoading, globalError, contacts } = useContacts();
-
+  let [isOpenModal, setOpenModal] = useState(false);
   let renderedContacts = useMemo(
     () =>
       contacts.map((contact) => (
-        <SingleContact key={contact.id} contact={contact} />
+        <SingleContact
+          key={contact.id}
+          contact={contact}
+          isOpenModal={isOpenModal}
+          setOpenModal={setOpenModal}
+        />
       )),
-    [contacts],
+    [contacts, isOpenModal],
   );
 
   return (
     <Container>
+      <DeleteContactModal
+        isOpen={isOpenModal}
+        onClose={() => setOpenModal(false)}
+        onSubmit={() => {}}
+        modalTitle="Confirm the action"
+        confirmationButtonTitle="Yes"
+        rejectButtonTitle="No"
+      />
       <FilterAndSearch>
         <FilterButton />
         <SearchField />
