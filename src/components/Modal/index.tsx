@@ -1,4 +1,5 @@
 import React, { ReactNode } from 'react';
+import ReactDOM from 'react-dom';
 import {
   ChildrenContainer,
   Wrapper,
@@ -28,7 +29,7 @@ export function Modal({
   onClose,
   onSubmit,
 }: IModalProps) {
-  return (
+  return ReactDOM.createPortal(
     <Wrapper onClick={(event) => event.stopPropagation()}>
       <ChildrenContainer>
         <ModalHeader>
@@ -51,6 +52,7 @@ export function Modal({
           </ModalButton>
         </ModalFooter>
       </ChildrenContainer>
-    </Wrapper>
+    </Wrapper>,
+    document.getElementById('modals')!,
   );
 }

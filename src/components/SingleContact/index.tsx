@@ -1,4 +1,6 @@
 import React, { useMemo, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import * as dayjs from 'dayjs';
 import {
   Amount,
   Checkbox,
@@ -21,8 +23,6 @@ import { Icon, IconNames } from '../Icon';
 import { Contact } from '../../entites';
 import { Dropdown } from '../Dropdown';
 import { useOutsideClick } from '../../hooks/useOutsideClick';
-import { useTranslation } from 'react-i18next';
-import * as dayjs from 'dayjs';
 
 export interface ISingleContactProps {
   contact: Contact;
