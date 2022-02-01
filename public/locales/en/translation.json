@@ -9,6 +9,7 @@
   },
   "filterButton": "Filter",
   "searchField": "Search Users by Name, Email or Date",
+  "createContact": "Create Contact",
   "tableTitles": {
     "name": "Name",
     "userStatus": "User status",

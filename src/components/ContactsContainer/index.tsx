@@ -11,6 +11,7 @@ import { useContacts } from '../../hooks';
 import { Loader } from '../Loader';
 import { ErrorMessage } from '../ErrorMessage';
 import { DeleteContactModal } from '../../modals';
+import { AddContactButton } from '../../ui';
 
 export function ContactsContainer() {
   let { isLoading, globalError, contacts } = useContacts();
@@ -41,6 +42,7 @@ export function ContactsContainer() {
       <FilterAndSearch>
         <FilterButton />
         <SearchField />
+        <AddContactButton />
       </FilterAndSearch>
       <TableTitles />
       {isLoading && <Loader />}
