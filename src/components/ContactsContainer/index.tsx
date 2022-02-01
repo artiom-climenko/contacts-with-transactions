@@ -10,39 +10,47 @@ import { Container, FilterAndSearch } from './index.styles';
 import { useContacts } from '../../hooks';
 import { Loader } from '../Loader';
 import { ErrorMessage } from '../ErrorMessage';
-import { DeleteContactModal } from '../../modals';
+import { CreateContactModal, DeleteContactModal } from '../../modals';
 import { AddContactButton } from '../../ui';
 
 export function ContactsContainer() {
   let { isLoading, globalError, contacts } = useContacts();
-  let [isOpenModal, setOpenModal] = useState(false);
+  let [isOpenDeleteModal, setOpenDeleteModal] = useState(false);
+  let [isOpenCreateModal, setOpenCreateModal] = useState(false);
   let renderedContacts = useMemo(
     () =>
       contacts.map((contact) => (
         <SingleContact
           key={contact.id}
           contact={contact}
-          isOpenModal={isOpenModal}
-          setOpenModal={setOpenModal}
+          setOpenDeleteModal={setOpenDeleteModal}
         />
       )),
-    [contacts, isOpenModal],
+    [contacts],
   );
 
   return (
     <Container>
       <DeleteContactModal
-        isOpen={isOpenModal}
-        onClose={() => setOpenModal(false)}
+        isOpen={isOpenDeleteModal}
+        onClose={() => setOpenDeleteModal(false)}
         onSubmit={() => {}}
         modalTitle="Confirm the action"
         confirmationButtonTitle="Yes"
         rejectButtonTitle="No"
       />
+      <CreateContactModal
+        isOpen={isOpenCreateModal}
+        onClose={() => setOpenCreateModal(false)}
+        onSubmit={() => {}}
+        modalTitle="Create new contact"
+        confirmationButtonTitle="Confirm"
+        rejectButtonTitle="Close"
+      />
       <FilterAndSearch>
         <FilterButton />
         <SearchField />
-        <AddContactButton />
+        <AddContactButton setOpenCreateModal={setOpenCreateModal} />
       </FilterAndSearch>
       <TableTitles />
       {isLoading && <Loader />}
