@@ -2,25 +2,9 @@ import { css, Global } from '@emotion/react';
 import React, { Suspense } from 'react';
 import { Router } from './router';
 import '../i18n';
+import { MultiThemeProvider } from './providers';
 
 let globalStyles = css`
-  :root {
-    --color-primary: #6d5bd0;
-    --color-font-primary: #25213b;
-    --color-font-primary-variant: #6e6893;
-    --color-font-primary-icon: #8b83ba;
-    --color-font-stroke: #c6c2de;
-    --color-font-positive: #007f00;
-    --color-font-negative: #d30000;
-    --color-font-neutral: #965e00;
-    --color-background-positive: #cdffcd;
-    --color-background-negative: #ffe0e0;
-    --color-background-neutral: #ffeccc;
-    --color-background-primary: #ffffff;
-    --color-background-parent: #f2f0f9;
-    --color-background-stripe: #f4f2ff;
-  }
-
   *,
   *::before,
   *::after {
@@ -38,7 +22,9 @@ let globalStyles = css`
 export function App() {
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <Router />
+      <MultiThemeProvider>
+        <Router />
+      </MultiThemeProvider>
       <Global styles={globalStyles} />
     </Suspense>
   );
