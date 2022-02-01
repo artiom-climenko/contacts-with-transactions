@@ -12,7 +12,7 @@ import {
 import { Icon, IconNames } from '../Icon';
 
 export interface IModalProps {
-  children: ReactNode;
+  children?: ReactNode;
   isOpen: boolean;
   onClose: () => void;
   onSubmit: () => void;
@@ -28,13 +28,15 @@ export function Modal({
   rejectButtonTitle,
   onClose,
   onSubmit,
+  isOpen,
 }: IModalProps) {
+  if (!isOpen) return null;
   return ReactDOM.createPortal(
     <Wrapper onClick={(event) => event.stopPropagation()}>
       <ChildrenContainer>
         <ModalHeader>
           <ModalTitle>{modalTitle}</ModalTitle>
-          <CloseModalButton onClick={onClose}>
+          <CloseModalButton type="button" onClick={onClose}>
             <Icon
               icon={IconNames.modalClose}
               size={20}
@@ -44,7 +46,7 @@ export function Modal({
         </ModalHeader>
         {children}
         <ModalFooter>
-          <ModalButton type="submit" onClick={onClose}>
+          <ModalButton type="button" onClick={onClose}>
             {rejectButtonTitle}
           </ModalButton>
           <ModalButton type="submit" onClick={onSubmit}>

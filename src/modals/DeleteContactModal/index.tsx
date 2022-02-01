@@ -1,9 +1,6 @@
 import React from 'react';
 import { IModalProps, Modal } from '../../components';
-import {
-  ModalBody,
-  ModalBodyDescription,
-} from './index.styles';
+import { ModalBody, ModalBodyDescription } from './index.styles';
 
 export interface IDeleteContactModalProps extends IModalProps {}
 

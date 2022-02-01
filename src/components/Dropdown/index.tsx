@@ -3,19 +3,26 @@ import { DropdownItem, DropdownList, DropdownWrapper } from './index.styles';
 import { useTranslation } from 'react-i18next';
 
 export interface IDropDownProps {
-  isOpen: boolean;
+  isOpenDropdown: boolean;
+  setOpenModal: (value: boolean) => void;
   ref: any;
 }
 
-export function Dropdown({ isOpen, ref }: IDropDownProps) {
+export function Dropdown({
+  isOpenDropdown,
+  setOpenModal,
+  ref,
+}: IDropDownProps) {
   const { t } = useTranslation();
 
   return (
-    <DropdownWrapper ref={ref} isOpen={isOpen}>
+    <DropdownWrapper ref={ref} isOpenDropdown={isOpenDropdown}>
       <DropdownList>
         <DropdownItem>{t('dropdown.edit')}</DropdownItem>
         <DropdownItem>{t('dropdown.viewProfile')}</DropdownItem>
-        <DropdownItem>{t('dropdown.delete')}</DropdownItem>
+        <DropdownItem onClick={() => setOpenModal(true)}>
+          {t('dropdown.delete')}
+        </DropdownItem>
       </DropdownList>
     </DropdownWrapper>
   );

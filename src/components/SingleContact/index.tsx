@@ -22,10 +22,12 @@ import { MoreButton } from '../TableTitles/index.styles';
 import { Icon, IconNames } from '../Icon';
 import { Contact } from '../../entites';
 import { Dropdown } from '../Dropdown';
-import { useOutsideClick } from '../../hooks/useOutsideClick';
+// import { useOutsideClick } from '../../hooks/useOutsideClick';
 
 export interface ISingleContactProps {
   contact: Contact;
+  isOpenModal: boolean;
+  setOpenModal: (value: boolean) => void;
 }
 
 export function SingleContact({
@@ -40,11 +42,13 @@ export function SingleContact({
     currency,
     currencySymbol,
   },
+  isOpenModal,
+  setOpenModal,
 }: ISingleContactProps) {
-  let [isOpen, setOpen] = useState(false);
+  let [isOpenDropdown, setOpenDropdown] = useState(false);
   let ref = useRef<HTMLDivElement>(null);
   // @ts-ignore
-  useOutsideClick({ ref, onClick: () => setOpen(false) });
+  // useOutsideClick({ ref, onClick: () => setOpenDropdown(false) });
 
   const { t } = useTranslation();
 
@@ -101,14 +105,18 @@ export function SingleContact({
       </TableColumn>
       <ViewMoreAndMoreWrapper>
         <ViewMore>{t('singleContact.viewMore')}</ViewMore>
-        <MoreButton onClick={() => setOpen(true)}>
+        <MoreButton onClick={() => setOpenDropdown(true)}>
           <Icon
             icon={IconNames.breadcrumb}
             size={20}
             fill="var(--color-font-primary-icon)"
           />
         </MoreButton>
-        <Dropdown ref={ref} isOpen={isOpen} />
+        <Dropdown
+          ref={ref}
+          isOpenDropdown={isOpenDropdown}
+          setOpenModal={setOpenModal}
+        />
       </ViewMoreAndMoreWrapper>
     </ContactWrapper>
   );
