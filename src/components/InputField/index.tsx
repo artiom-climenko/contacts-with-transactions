@@ -7,7 +7,7 @@ export interface IPropsInputField {
   id: string;
   name: string;
   placeholder?: string;
-  value: string;
+  value?: string;
   onChange: ChangeEventHandler;
   onBlur?: ChangeEventHandler;
   required?: boolean;

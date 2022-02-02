@@ -4,13 +4,15 @@ import { useTranslation } from 'react-i18next';
 
 export interface IDropDownProps {
   isOpenDropdown: boolean;
-  setOpenDeleteModal: (value: boolean) => void;
+  onDelete: () => void;
+  onEdit: () => void;
   ref: any;
 }
 
 export function Dropdown({
   isOpenDropdown,
-  setOpenDeleteModal,
+  onDelete,
+  onEdit,
   ref,
 }: IDropDownProps) {
   const { t } = useTranslation();
@@ -18,11 +20,9 @@ export function Dropdown({
   return (
     <DropdownWrapper ref={ref} isOpenDropdown={isOpenDropdown}>
       <DropdownList>
-        <DropdownItem>{t('dropdown.edit')}</DropdownItem>
+        <DropdownItem onClick={onEdit}>{t('dropdown.edit')}</DropdownItem>
         <DropdownItem>{t('dropdown.viewProfile')}</DropdownItem>
-        <DropdownItem onClick={() => setOpenDeleteModal(true)}>
-          {t('dropdown.delete')}
-        </DropdownItem>
+        <DropdownItem onClick={onDelete}>{t('dropdown.delete')}</DropdownItem>
       </DropdownList>
     </DropdownWrapper>
   );
