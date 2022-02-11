@@ -59,7 +59,21 @@
         "validation": {
           "tooShort": "Too Short!"
         }
-      }
+      },
+      "title": "Create new contact",
+      "save": "Save",
+      "close": "Close"
+    },
+    "deleteContact": {
+      "body": "Confirm the action.",
+      "delete": "Delete {{selectedContact.displayName}}?",
+      "yes": "Yes",
+      "no": "No"
+    },
+    "editContact": {
+      "title": "Edit contact",
+      "save": "Save",
+      "close": "Close"
     }
   },
   "validation": {

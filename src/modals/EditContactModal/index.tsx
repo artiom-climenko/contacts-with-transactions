@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import * as dayjs from 'dayjs';
@@ -17,8 +17,12 @@ export function EditContactModal({
   ...props
 }: IEditContactModalProps) {
   const { t } = useTranslation();
-  let todayInUnix = dayjs().startOf('day').unix();
-  let endOfTheWeekInUnix = dayjs().endOf('week').unix() + 1;
+  let todayInUnix = useMemo(() => {
+    return dayjs().startOf('day').unix();
+  }, []);
+  let endOfTheWeekInUnix = useMemo(() => {
+    return dayjs().endOf('week').unix() + 1;
+  }, []);
   const validationSchema = yup.object().shape({
     contactName: yup
       .string()
@@ -79,17 +83,15 @@ export function EditContactModal({
     'paymentDate',
   );
 
-  let paymentStatusToUppercase =
-    String(selectedContact?.paymentStatus).charAt(0).toUpperCase() +
-    String(selectedContact?.paymentStatus).slice(1);
-
-  let paymentDate = dayjs(selectedContact?.paymentOn).format('YYYY-MM-DD');
+  let paymentDate = useMemo(() => {
+    return dayjs(selectedContact?.paymentOn).format('YYYY-MM-DD');
+  }, [selectedContact?.paymentOn]);
 
   useEffect(() => {
     formik.setFieldValue('contactName', selectedContact?.displayName);
     formik.setFieldValue('email', selectedContact?.email);
     formik.setFieldValue('amount', selectedContact?.amount);
-    formik.setFieldValue('paymentStatus', paymentStatusToUppercase);
+    formik.setFieldValue('paymentStatus', selectedContact?.paymentStatus);
     formik.setFieldValue('paymentDate', paymentDate);
   }, [selectedContact]);
 

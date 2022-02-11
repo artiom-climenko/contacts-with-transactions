@@ -1,4 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   FilterButton,
   SectionPagination,
@@ -19,6 +20,7 @@ import { AddContactButton } from '../../ui';
 import { Contact } from '../../entites';
 
 export function ContactsContainer() {
+  const { t } = useTranslation();
   let { isLoading, globalError, contacts } = useContacts();
   let [isOpenDeleteModal, setOpenDeleteModal] = useState(false);
   let [isOpenCreateModal, setOpenCreateModal] = useState(false);
@@ -56,26 +58,26 @@ export function ContactsContainer() {
         isOpen={isOpenDeleteModal}
         onClose={() => setOpenDeleteModal(false)}
         onSubmit={() => {}}
-        modalTitle={`Delete ${selectedContact?.displayName}?`}
-        confirmationButtonTitle="Yes"
-        rejectButtonTitle="No"
+        modalTitle={t('modals.deleteContact.delete', { selectedContact })}
+        confirmationButtonTitle={t('modals.deleteContact.yes')}
+        rejectButtonTitle={t('modals.deleteContact.no')}
       />
       <CreateContactModal
         isOpen={isOpenCreateModal}
         onClose={() => setOpenCreateModal(false)}
         onSubmit={() => {}}
-        modalTitle="Create new contact"
-        confirmationButtonTitle="Confirm"
-        rejectButtonTitle="Close"
+        modalTitle={t('modals.createContact.title')}
+        confirmationButtonTitle={t('modals.createContact.save')}
+        rejectButtonTitle={t('modals.createContact.close')}
       />
       <EditContactModal
         isOpen={isOpenEditModal}
         onClose={() => setOpenEditModal(false)}
         onSubmit={() => {}}
         selectedContact={selectedContact}
-        modalTitle="Edit contact"
-        confirmationButtonTitle="Confirm"
-        rejectButtonTitle="Close"
+        modalTitle={t('modals.editContact.title')}
+        confirmationButtonTitle={t('modals.editContact.save')}
+        rejectButtonTitle={t('modals.editContact.close')}
       />
       <FilterAndSearch>
         <FilterButton />
