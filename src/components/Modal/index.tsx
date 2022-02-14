@@ -17,7 +17,7 @@ export interface IModalProps {
   children?: ReactNode;
   isOpen: boolean;
   onClose: () => void;
-  onSubmit: () => void;
+  onSubmit: any;
   modalTitle: string;
   confirmationButtonTitle: string;
   rejectButtonTitle: string;
