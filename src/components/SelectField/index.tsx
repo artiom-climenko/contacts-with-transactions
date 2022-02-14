@@ -38,13 +38,13 @@ export function SelectField({
           <option selected>
             {t('modals.createContact.form.select.selected')}
           </option>
-          <option value="Paid">
+          <option value="paid">
             {t('modals.createContact.form.select.paid')}
           </option>
-          <option value="Unpaid">
+          <option value="unpaid">
             {t('modals.createContact.form.select.unpaid')}
           </option>
-          <option value="Overdue">
+          <option value="overdue">
             {t('modals.createContact.form.select.overdue')}
           </option>
         </Select>

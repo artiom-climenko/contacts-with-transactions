@@ -26,7 +26,8 @@ import { Dropdown } from '../Dropdown';
 
 export interface ISingleContactProps {
   contact: Contact;
-  setOpenDeleteModal: (value: boolean) => void;
+  onDelete: () => void;
+  onEdit: () => void;
 }
 
 export function SingleContact({
@@ -41,7 +42,8 @@ export function SingleContact({
     currency,
     currencySymbol,
   },
-  setOpenDeleteModal,
+  onDelete,
+  onEdit,
 }: ISingleContactProps) {
   let [isOpenDropdown, setOpenDropdown] = useState(false);
   let ref = useRef<HTMLDivElement>(null);
@@ -111,9 +113,10 @@ export function SingleContact({
           />
         </MoreButton>
         <Dropdown
+          onDelete={onDelete}
+          onEdit={onEdit}
           ref={ref}
           isOpenDropdown={isOpenDropdown}
-          setOpenDeleteModal={setOpenDeleteModal}
         />
       </ViewMoreAndMoreWrapper>
     </ContactWrapper>

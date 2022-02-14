@@ -59,7 +59,21 @@
         "validation": {
           "tooShort": "Слишком короткий"
         }
-      }
+      },
+      "title": "Создать новый контакт",
+      "save": "Сохранить",
+      "close": "Закрыть"
+    },
+    "deleteContact": {
+      "body": "Подтвердите действие.",
+      "delete": "Удалить {{selectedContact.displayName}}?",
+      "yes": "Да",
+      "no": "Нет"
+    },
+    "editContact": {
+      "title": "Изменить контакт",
+      "save": "Сохранить",
+      "close": "Закрыть"
     }
   },
   "validation": {
