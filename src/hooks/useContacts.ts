@@ -68,13 +68,18 @@ export function useContacts() {
   );
 
   let handleUpdate = useCallback(
-    async (contact: Contact) => {
+    async (contact?: Contact, contactId?: string) => {
       try {
         setUpdatingLoading(true);
-        let response = await API.put(`/${contact}`);
+        let response = await API.put(`/${contactId}`);
+        setContacts(
+          contacts.map((item) => (item?.id === contact?.id ? contact : item)),
+        );
         handleFetchContacts();
+        return false;
       } catch (error) {
         setUpdatingError(String(error));
+        return true;
       } finally {
         setUpdatingLoading(false);
       }

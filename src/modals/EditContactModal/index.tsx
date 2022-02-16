@@ -6,14 +6,16 @@ import { useTranslation } from 'react-i18next';
 import { IModalProps, InputField, Modal, SelectField } from '../../components';
 import { ModalBody } from './index.styles';
 import { useTouchableError } from '../../hooks/useTouchableError';
-import { Contact } from '../../entites';
+import { Contact, ContactStatus } from '../../entites';
 
 export interface IEditContactModalProps extends IModalProps {
-  selectedContact: Contact | undefined;
+  selectedContact?: Contact;
+  setUpdatedContact: (value: Contact) => void;
 }
 
 export function EditContactModal({
   selectedContact,
+  setUpdatedContact,
   ...props
 }: IEditContactModalProps) {
   const { t } = useTranslation();
@@ -59,7 +61,20 @@ export function EditContactModal({
       paymentStatus: '',
       paymentDate: '',
     },
-    onSubmit: (values) => {},
+    onSubmit: (values) => {
+      setUpdatedContact({
+        id: selectedContact.id,
+        displayName: values.contactName,
+        email: values.email,
+        status: ContactStatus.ACTIVE,
+        lastLogin: dayjs().unix(),
+        paymentStatus: values.paymentStatus,
+        paymentOn: dayjs(values.paymentDate).unix(),
+        amount: values.amount,
+        currency: 'USD',
+        currencySymbol: '$',
+      });
+    },
     validationSchema,
   });
   let { touchableError: touchedContactNameError } = useTouchableError(

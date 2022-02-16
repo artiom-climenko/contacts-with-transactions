@@ -21,14 +21,15 @@ import { Contact } from '../../entites';
 
 export function ContactsContainer() {
   const { t } = useTranslation();
-  let { isLoading, globalError, contacts } = useContacts();
+  let { isLoading, globalError, contacts, handleUpdate } = useContacts();
   let [isOpenDeleteModal, setOpenDeleteModal] = useState(false);
   let [isOpenCreateModal, setOpenCreateModal] = useState(false);
   let [isOpenEditModal, setOpenEditModal] = useState(false);
   let [selectedContact, setSelectedContact] = useState<Contact | undefined>(
     undefined,
   );
-
+  let [updatedContact, setUpdatedContact] = useState(selectedContact);
+  console.log(selectedContact?.id, updatedContact);
   let handleDeleteContact = useCallback((contact: Contact) => {
     setSelectedContact(contact);
     setOpenDeleteModal(true);
@@ -38,6 +39,11 @@ export function ContactsContainer() {
     setSelectedContact(contact);
     setOpenEditModal(true);
   }, []);
+
+  let handleEdit = useCallback(async () => {
+    let result = await handleUpdate(updatedContact, selectedContact?.id);
+    setOpenEditModal(result);
+  }, [handleUpdate, selectedContact?.id, updatedContact]);
 
   let renderedContacts = useMemo(
     () =>
@@ -73,8 +79,9 @@ export function ContactsContainer() {
       <EditContactModal
         isOpen={isOpenEditModal}
         onClose={() => setOpenEditModal(false)}
-        onSubmit={() => {}}
+        onSubmit={handleEdit}
         selectedContact={selectedContact}
+        setUpdatedContact={setUpdatedContact}
         modalTitle={t('modals.editContact.title')}
         confirmationButtonTitle={t('modals.editContact.save')}
         rejectButtonTitle={t('modals.editContact.close')}

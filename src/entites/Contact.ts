@@ -15,9 +15,9 @@ export interface Contact {
   email: string;
   status: ContactStatus;
   lastLogin: number;
-  paymentStatus: ContactPaymentStatus;
+  paymentStatus: ContactPaymentStatus | string;
   paymentOn: number;
-  amount: number;
+  amount: string;
   currency: string;
   currencySymbol: string;
 }
