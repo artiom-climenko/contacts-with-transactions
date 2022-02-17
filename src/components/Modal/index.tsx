@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useRef } from 'react';
 import ReactDOM from 'react-dom';
 import {
   ChildrenContainer,
@@ -10,6 +10,7 @@ import {
   CloseModalButton,
 } from './index.styles';
 import { Icon, IconNames } from '../Icon';
+import { useClickAway } from 'react-use';
 
 export interface IModalProps {
   children?: ReactNode;
@@ -30,10 +31,14 @@ export function Modal({
   onSubmit,
   isOpen,
 }: IModalProps) {
+  const ref = useRef(null);
+  useClickAway(ref, () => {
+    onClose();
+  });
   if (!isOpen) return null;
   return ReactDOM.createPortal(
-    <Wrapper onClick={(event) => event.stopPropagation()}>
-      <ChildrenContainer>
+    <Wrapper>
+      <ChildrenContainer ref={ref}>
         <ModalHeader>
           <ModalTitle>{modalTitle}</ModalTitle>
           <CloseModalButton type="button" onClick={onClose}>

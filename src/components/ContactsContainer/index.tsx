@@ -51,7 +51,6 @@ export function ContactsContainer() {
       )),
     [contacts],
   );
-
   return (
     <Container>
       <DeleteContactModal
