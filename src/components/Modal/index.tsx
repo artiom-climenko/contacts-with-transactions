@@ -1,5 +1,6 @@
 import React, { ReactNode, useRef } from 'react';
 import ReactDOM from 'react-dom';
+import { AnimatePresence } from 'framer-motion';
 import {
   ChildrenContainer,
   Wrapper,
@@ -22,6 +23,20 @@ export interface IModalProps {
   rejectButtonTitle: string;
 }
 
+const backdrop = {
+  visible: { opacity: 1 },
+  hidden: { opacity: 0 },
+};
+
+const modal = {
+  hidden: { y: '-100vh', opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: { delay: 0.4 },
+  },
+};
+
 export function Modal({
   children,
   modalTitle,
@@ -35,31 +50,39 @@ export function Modal({
   useClickAway(ref, () => {
     onClose();
   });
-  if (!isOpen) return null;
   return ReactDOM.createPortal(
-    <Wrapper>
-      <ChildrenContainer ref={ref}>
-        <ModalHeader>
-          <ModalTitle>{modalTitle}</ModalTitle>
-          <CloseModalButton type="button" onClick={onClose}>
-            <Icon
-              icon={IconNames.modalClose}
-              size={20}
-              fill="var(--color-primary)"
-            />
-          </CloseModalButton>
-        </ModalHeader>
-        {children}
-        <ModalFooter>
-          <ModalButton type="button" onClick={onClose}>
-            {rejectButtonTitle}
-          </ModalButton>
-          <ModalButton type="submit" onClick={onSubmit}>
-            {confirmationButtonTitle}
-          </ModalButton>
-        </ModalFooter>
-      </ChildrenContainer>
-    </Wrapper>,
+    <AnimatePresence exitBeforeEnter>
+      {isOpen && (
+        <Wrapper
+          variants={backdrop}
+          initial="hidden"
+          animate="visible"
+          exit="hidden"
+        >
+          <ChildrenContainer ref={ref} variants={modal}>
+            <ModalHeader>
+              <ModalTitle>{modalTitle}</ModalTitle>
+              <CloseModalButton type="button" onClick={onClose}>
+                <Icon
+                  icon={IconNames.modalClose}
+                  size={20}
+                  fill="var(--color-primary)"
+                />
+              </CloseModalButton>
+            </ModalHeader>
+            {children}
+            <ModalFooter>
+              <ModalButton type="button" onClick={onClose}>
+                {rejectButtonTitle}
+              </ModalButton>
+              <ModalButton type="submit" onClick={onSubmit}>
+                {confirmationButtonTitle}
+              </ModalButton>
+            </ModalFooter>
+          </ChildrenContainer>
+        </Wrapper>
+      )}
+    </AnimatePresence>,
     document.getElementById('modals')!,
   );
 }

@@ -9,6 +9,8 @@ let globalStyles = css`
   *::before,
   *::after {
     box-sizing: border-box;
+    transition-property: color, background-color;
+    transition-duration: 0.8s;
   }
 
   body {
