@@ -41,7 +41,7 @@ export function ContactsContainer() {
 
   let renderedContacts = useMemo(
     () =>
-      contacts.map((contact) => (
+      contacts?.map((contact) => (
         <SingleContact
           key={contact.id}
           contact={contact}
