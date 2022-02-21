@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
+import { motion } from 'framer-motion';
 
-export const DropdownWrapper = styled.div<{ isOpenDropdown: boolean }>`
-  display: ${({ isOpenDropdown }) => (isOpenDropdown ? 'block' : 'none')};
+export const DropdownWrapper = styled(motion.div)`
   position: absolute;
   top: 0;
   right: 5px;

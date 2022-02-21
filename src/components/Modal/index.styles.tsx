@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
+import { motion } from 'framer-motion';
 
-export const Wrapper = styled.div`
+export const Wrapper = styled(motion.div)`
   position: fixed;
   top: 0;
   bottom: 0;
@@ -13,7 +14,7 @@ export const Wrapper = styled.div`
   background-color: rgba(0, 0, 0, 0.7);
 `;
 
-export const ChildrenContainer = styled.div`
+export const ChildrenContainer = styled(motion.div)`
   min-width: 400px;
   background-color: var(--color-background-primary);
   border-radius: 8px;
