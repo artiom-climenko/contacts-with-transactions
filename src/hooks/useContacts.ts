@@ -36,9 +36,14 @@ export function useContacts() {
       try {
         setRemovingLoading(true);
         let response = await API.delete(`/${contactId}`);
+        setContacts(
+          contacts?.filter((contact: Contact) => contact.id !== contactId),
+        );
         handleFetchContacts();
+        return true;
       } catch (error) {
         setRemovingError(String(error));
+        return false;
       } finally {
         setRemovingLoading(false);
       }

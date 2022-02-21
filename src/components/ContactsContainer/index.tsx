@@ -21,7 +21,7 @@ import { Contact } from '../../entites';
 
 export function ContactsContainer() {
   const { t } = useTranslation();
-  let { isLoading, globalError, contacts } = useContacts();
+  let { isLoading, globalError, contacts, handleRemove } = useContacts();
   let [isOpenDeleteModal, setOpenDeleteModal] = useState(false);
   let [isOpenCreateModal, setOpenCreateModal] = useState(false);
   let [isOpenEditModal, setOpenEditModal] = useState(false);
@@ -33,6 +33,11 @@ export function ContactsContainer() {
     setSelectedContact(contact);
     setOpenDeleteModal(true);
   }, []);
+
+  let handleRemoveContact = useCallback(async () => {
+    let result = await handleRemove(selectedContact?.id || '');
+    setOpenDeleteModal(!result);
+  }, [handleRemove, selectedContact?.id]);
 
   let handleEditContact = useCallback((contact: Contact) => {
     setSelectedContact(contact);
@@ -56,7 +61,7 @@ export function ContactsContainer() {
       <DeleteContactModal
         isOpen={isOpenDeleteModal}
         onClose={() => setOpenDeleteModal(false)}
-        onSubmit={() => {}}
+        onSubmit={handleRemoveContact}
         modalTitle={t('modals.deleteContact.delete', { selectedContact })}
         confirmationButtonTitle={t('modals.deleteContact.yes')}
         rejectButtonTitle={t('modals.deleteContact.no')}
