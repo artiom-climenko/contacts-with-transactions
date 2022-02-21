@@ -22,7 +22,6 @@ import { MoreButton } from '../TableTitles/index.styles';
 import { Icon, IconNames } from '../Icon';
 import { Contact } from '../../entites';
 import { Dropdown } from '../Dropdown';
-// import { useOutsideClick } from '../../hooks/useOutsideClick';
 
 export interface ISingleContactProps {
   contact: Contact;
@@ -46,10 +45,6 @@ export function SingleContact({
   onEdit,
 }: ISingleContactProps) {
   let [isOpenDropdown, setOpenDropdown] = useState(false);
-  let ref = useRef<HTMLDivElement>(null);
-  // @ts-ignore
-  // useOutsideClick({ ref, onClick: () => setOpenDropdown(false) });
-
   const { t } = useTranslation();
 
   let renderedLastLoginDate = useMemo(() => {
@@ -115,8 +110,8 @@ export function SingleContact({
         <Dropdown
           onDelete={onDelete}
           onEdit={onEdit}
-          ref={ref}
           isOpenDropdown={isOpenDropdown}
+          setOpenDropdown={setOpenDropdown}
         />
       </ViewMoreAndMoreWrapper>
     </ContactWrapper>
